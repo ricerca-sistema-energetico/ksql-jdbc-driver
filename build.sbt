@@ -1,7 +1,7 @@
 val projectVersion = "1.2.0"
 val projectScalaVersion = "2.12.10"
-val ksqlVersion = "5.4.0"
-val kafkaVersion = "2.4.0"
+val ksqlVersion = "5.4.2"
+val kafkaVersion = "2.6.0"
 val scalaTestVersion = "3.1.0"
 val scalaMockVersion = "3.6.0"
 val wsApiVersion = "2.1.1"
@@ -17,7 +17,7 @@ val dependencies = Seq(
   "org.apache.kafka" %% "kafka" % kafkaVersion % "test",
   "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
   "org.scalamock" %% "scalamock-scalatest-support" % scalaMockVersion % "test",
-  "javax.ws.rs" % "javax.ws.rs-api" % wsApiVersion artifacts Artifact("javax.ws.rs-api", "jar", "jar")
+  "org.openjfx" % "javafx-base" % "11" artifacts Artifact("javax.ws.rs-api", "jar", "jar")
 )
 
 val common = Seq(
@@ -29,6 +29,18 @@ val common = Seq(
   resolvers ++= repos,
   libraryDependencies ++= dependencies
 )
+
+/*lazy val root = (project in file("."))
+  .settings(
+    name := "seed-project",
+    resolvers ++= Seq(
+      MavenRepo("confluent", "https://packages.confluent.io/maven/"),
+      Resolver.sonatypeRepo("public")
+    ),
+    libraryDependencies ++= Seq(
+      "io.confluent" % "rest-utils" % "5.4.0"
+    )
+  )*/
 
 lazy val root = project.in(file("."))
   .configs(Configs.all: _*)
